@@ -1,0 +1,28 @@
+#+TITLE: Game of Code 2021 - Team Latimums
+
+* Idea
+
+We are three friends living in south France and joining the competition for fun.
+
+We have chosen the Live Streaming Challenge proposed by DOCLER HOLDING.
+
+We found that a real problem in day to day video conferencing is the
+lack of complete communication, including human non-verbal
+interactions and facial expressions, in particular for a live
+streaming where a speaker wants to deliver an important message to a
+crowd of interlocutors. For the speaker: knowing how good her message
+has been received and understood by the listeners is a key feedback in
+order to improve or adapt her communication strategy.
+
+Our solution provides the means for instant facial emotion recognition (FER)
+in order to give a feedback to the speaker at specific moment of her
+speech or throughout the whole live streaming session.
+
+As an example. A math teacher gives a live stream lesson to its
+students.  During the session, the professor wants to know how far the
+student's understanding goes.  By clicking an 'activate FER' button,
+and subsequently asking the interlocutors whether they understood the
+previous explanations, statistics are displayed on the screen
+indicating a percentage of negative emotions detected amongst every
+webcam, the meaning of which could be a "yes, students have
+understood" or a "no, not so much".
