@@ -1,0 +1,21 @@
+:server = http://localhost:5000
+:ct-json = Content-Type: application/json
+
+# Ping
+GET :server/test
+
+# Signal - offer
+POST :server/offer
+:ct-json
+{"type": "offer", "id": "id1", "sdp": "lol"}
+
+# Signal - get offer
+GET :server/get_offer
+
+# Signal - answer
+POST :server/answer
+:ct-json
+{"type": "answer", "id": "id1", "sdp": "lol"}
+
+# Signal - get answer
+GET :server/get_answer

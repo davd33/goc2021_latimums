@@ -23,7 +23,6 @@ function App() {
 
     return (
         <div className="App">
-          Here
           <video ref={webcamRef} autoplay playsinline width="640" height="480"></video>
           <canvas ref={canvasRef} className="d-none"></canvas>
           <audio ref={snapSoundRef} src="audio/snap.wav" preload = "auto"></audio>
