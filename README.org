@@ -26,3 +26,10 @@ previous explanations, statistics are displayed on the screen
 indicating a percentage of negative emotions detected amongst every
 webcam, the meaning of which could be a "yes, students have
 understood" or a "no, not so much".
+
+* References
+
+| title                                        | url                                                                                      |
+|----------------------------------------------+------------------------------------------------------------------------------------------|
+| How to Serve a React-app With a Flask-Server | https://blog.learningdollars.com/2019/11/29/how-to-serve-a-reactapp-with-a-flask-server/ |
+| Facial_Emotion_Recognition                   | https://github.com/greatsharma/Facial_Emotion_Recognition                                |
