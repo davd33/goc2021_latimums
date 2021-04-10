@@ -1,31 +1,38 @@
 import React, {useEffect, useState} from 'react';
-import Webcam from 'webcam-easy';
 import logo from './logo.svg';
+import axios from 'axios';
+import Peer from 'simple-peer';
 import './App.css';
 
-function App() {
+function App(){
 
-    const [webcamRef] = useState(React.createRef());
-    const [canvasRef] = useState(React.createRef());
-    const [snapSoundRef] = useState(React.createRef());
+    const wsConnect = () => {
+        console.log('connect to python websocket');
+        const socket = new window.WebSocket(`ws://${window.token}:8769`);
 
-    useEffect(() => {
-        const webcam = new Webcam(webcamRef.current, 'user', canvasRef.current, snapSoundRef.current);
+        socket.addEventListener('message', onMessage);
 
-        webcam.start()
-            .then(result =>{
-                console.log("webcam started");
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    });
+        function onMessage (event) {
+            const message = event.data;
+            // if (message === 'ready') {
+            //     if (peer) return;
+            //     peer = new Peer({ initiator: true });
+            //     peer.on('signal', function (signal) {
+            //         socket.send(JSON.stringify(signal));
+            //     });
+            //     peer.on('connect', function () {
+            //         endless.pipe(peer);
+            //     });
+            // } else {
+            //     peer.signal(JSON.parse(message));
+            // }
+            console.log(event);
+        }
+    };
 
     return (
-        <div className="App">
-          <video ref={webcamRef} autoplay playsinline width="640" height="480"></video>
-          <canvas ref={canvasRef} className="d-none"></canvas>
-          <audio ref={snapSoundRef} src="audio/snap.wav" preload = "auto"></audio>
+        <div>
+          <button onClick={wsConnect}>connect ws</button>
         </div>
     );
 }

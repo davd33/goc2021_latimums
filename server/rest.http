@@ -7,7 +7,7 @@ GET :server/test
 # Signal - offer
 POST :server/offer
 :ct-json
-{"type": "offer", "id": "id1", "sdp": "lol"}
+{"type": "offer", "id": "id2", "sdp": "lol"}
 
 # Signal - get offer
 GET :server/get_offer
