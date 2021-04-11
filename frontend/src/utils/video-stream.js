@@ -1,16 +1,20 @@
 import Webcam from 'webcam-easy';
 
-export function newBindStreamFct(onMediaStream) {
-    console.log('1111111111111111111');
-    return (webcamEl, canvasEl, snapSoundEl) => {
-        console.log('WE BIND THE STREAAAAM');
-        bindWebcamStream(webcamEl, canvasEl, snapSoundEl, onMediaStream);
-    };
+export function newBindWebcamStreamFct(onMediaStream) {
+    return (webcamEl, canvasEl, snapSoundEl) => bindWebcamStream(webcamEl, canvasEl, snapSoundEl, onMediaStream);
+}
+
+export function newBindWsStreamFct(onMediaStream) {
+    return (webcamEl, canvasEl, snapSoundEl) => bindWsStream(webcamEl, canvasEl, snapSoundEl, onMediaStream);
+}
+
+export function bindWsStream(webcamEl, canvasEl, snapSoundEl, onMediaStream) {
+
+    onMediaStream(webcamEl);
 }
 
 export function bindWebcamStream(webcamEl, canvasEl, snapSoundEl, onMediaStream) {
 
-    console.log('cannaaoeuhteonsuheotns');
     const webcam = new Webcam(webcamEl, 'user', canvasEl, snapSoundEl);
 
     webcam.start()

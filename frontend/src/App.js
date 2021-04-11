@@ -4,12 +4,13 @@ import axios from 'axios';
 import Peer from 'simple-peer';
 import RStream from 'readable-stream';
 import {VideoCanva} from './components/video-canva/VideoCanva';
-import {newBindStreamFct} from './utils/video-stream';
+import {newBindWebcamStreamFct, newBindWsStreamFct} from './utils/video-stream';
 import './App.css';
 
 function App(){
 
     const [videoStream, setVideoStream] = useState(null);
+    const [videoEl, setVideoEl] = useState(null);
 
     const wsConnect = (isStreamMode) => {
         const socket = new window.WebSocket(`ws://${window.token}:8769`);
@@ -35,6 +36,12 @@ function App(){
                 } else {
                     peer.on('stream', function (stream) {
                         console.log('receive stream');
+                        if ('srcObject' in videoEl) {
+                            videoEl.srcObject = stream;
+                        } else {
+                            videoEl.src = window.URL.createObjectURL(stream);
+                        }
+                        videoEl.play();
                     });
                 }
 
@@ -49,7 +56,14 @@ function App(){
         <div>
           <button onClick={() => wsConnect(true)}>Stream my Video</button>
           <button onClick={() => wsConnect(false)}>Connect to Stream</button>
-          <VideoCanva bindStream={newBindStreamFct((stream) => !!videoStream && setVideoStream(stream))} />
+          <VideoCanva bindStream={newBindWebcamStreamFct(
+              (stream) => {
+                  if (videoStream == null) setVideoStream(stream);
+              })} />
+          <VideoCanva bindStream={newBindWsStreamFct(
+              (videoElement) => {
+                  if (videoEl == null) setVideoEl(videoElement);
+              })}/>
         </div>
     );
 }
