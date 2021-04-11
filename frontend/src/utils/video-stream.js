@@ -22,7 +22,7 @@ export function bindWebcamStream(webcamEl, canvasEl, snapSoundEl, onMediaStream)
             navigator.mediaDevices.getUserMedia({
                 video: true, audio: true
             })
-                .then(onMediaStream)
+                .then((stream) => onMediaStream(stream, webcam))
                 .catch(() => console.log('error getting user media (video stream)'));
         })
         .catch(err => {

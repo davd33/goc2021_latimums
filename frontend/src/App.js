@@ -11,6 +11,7 @@ function App(){
 
     const [videoStream, setVideoStream] = useState(null);
     const [videoEl, setVideoEl] = useState(null);
+    const [easyWC, setEasyWC] = useState(null);
 
     const wsConnect = (isStreamMode) => {
         const socket = new window.WebSocket(`ws://${window.token}:8769`);
@@ -36,6 +37,7 @@ function App(){
                 } else {
                     peer.on('stream', function (stream) {
                         console.log('receive stream');
+                        //let pic = easyWC.snap();
                         if ('srcObject' in videoEl) {
                             videoEl.srcObject = stream;
                         } else {
@@ -57,8 +59,9 @@ function App(){
           <button onClick={() => wsConnect(true)}>Stream my Video</button>
           <button onClick={() => wsConnect(false)}>Connect to Stream</button>
           <VideoCanva bindStream={newBindWebcamStreamFct(
-              (stream) => {
+              (stream, webcam) => {
                   if (videoStream == null) setVideoStream(stream);
+                  if (easyWC == null) setEasyWC(webcam);
               })} />
           <VideoCanva bindStream={newBindWsStreamFct(
               (videoElement) => {
