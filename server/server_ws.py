@@ -18,9 +18,19 @@ async def handler(websocket, path):
     connected[key] = websocket
 
     try:
-        # Implement logic here.
-        await asyncio.wait([v.send("new joiner") for k, v in connected.items()])
-        await asyncio.sleep(10)
+
+        if len(connected) >= 2:
+            for k, v in connected.items():
+                await v.send('"ready"')
+
+        while True:
+            msg = await websocket.recv()
+            print('received msg')
+            print(msg)
+            for k, v in connected.items():
+                if k != key:
+                    await v.send(msg)
+
     finally:
         print('Remove Websocket: ' + str(key))
         connected.pop(key)
